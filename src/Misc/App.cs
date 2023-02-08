@@ -84,7 +84,6 @@ namespace mpvnet
                 }
                 catch (Exception e)
                 {
-                    Msg.ShowException(e);
                 }
             }
 
@@ -105,26 +104,6 @@ namespace mpvnet
                 themeContent,
                 Properties.Resources.theme,
                 IsDarkMode ? DarkTheme : LightTheme);
-        }
-
-        public static void UpdateWpfColors()
-        {
-            var dic = System.Windows.Application.Current.Resources;
-
-            dic.Remove("BorderColor");
-            dic.Add("BorderColor", Theme.Current.GetColor("menu-highlight"));
-
-            dic.Remove("RegionColor");
-            dic.Add("RegionColor", Theme.Current.GetColor("menu-background"));
-
-            dic.Remove("SecondaryRegionColor");
-            dic.Add("SecondaryRegionColor", Theme.Current.GetColor("menu-highlight"));
-
-            dic.Remove("PrimaryTextColor");
-            dic.Add("PrimaryTextColor", Theme.Current.GetColor("menu-foreground"));
-
-            dic.Remove("HighlightColor");
-            dic.Add("HighlightColor", Theme.Current.GetColor("highlight"));
         }
 
         public static void RunTask(Action action)
@@ -162,10 +141,7 @@ namespace mpvnet
                 Terminal.WriteError(obj.ToString());
             else
             {
-                if (obj is Exception e)
-                    InvokeOnMainThread(() => Msg.ShowException(e));
-                else
-                    InvokeOnMainThread(() => Msg.ShowError(obj.ToString()));
+
             }
         }
 
@@ -188,7 +164,9 @@ namespace mpvnet
                     Terminal.Write(msg);
             }
             else
-                InvokeOnMainThread(() => Msg.ShowInfo(msg));
+            {
+
+            }
         }
 
         public static void ShowError(string msg)
@@ -199,7 +177,9 @@ namespace mpvnet
                     Terminal.WriteError(msg);
             }
             else
-                InvokeOnMainThread(() => Msg.ShowError(msg));
+            {
+
+            }
         }
 
         static void Core_Initialized()

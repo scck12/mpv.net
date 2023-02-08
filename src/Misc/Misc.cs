@@ -274,23 +274,6 @@ namespace mpvnet
         public CommandItem CommandItem { get; set; }
     }
 
-    public class CommandPalette
-    {
-        public static CommandPaletteControl Instance { get; } = new CommandPaletteControl();
-
-        public static IEnumerable<CommandPaletteItem> GetItems()
-        {
-            return CommandItem.Items
-                .Where(i => i.Command != "")
-                .Select(i => new CommandPaletteItem() {
-                    Text = i.Display,
-                    SecondaryText = i.Input,
-                    Action = () => Core.Command(i.Command),
-                    CommandItem = i
-                });
-        }
-    }
-
     public class Chapter
     {
         public string Title { get; set; }

@@ -95,36 +95,6 @@
     <Compile Include="Misc\FolderBrowser.cs" />
     <Compile Include="Misc\JSONParser.cs" />
     <Compile Include="WinForms\SnapManager.cs" />
-    <Compile Include="WPF\HandyControl\Controls\Attach\BorderElement.cs" />
-    <Compile Include="WPF\HandyControl\Controls\Attach\MenuTopLineAttach.cs" />
-    <Compile Include="WPF\HandyControl\Tools\Converter\BorderCircularConverter.cs" />
-    <Compile Include="WPF\HandyControl\Tools\Helper\ScreenHelper.cs" />
-    <Compile Include="WPF\HandyControl\Tools\Helper\VisualHelper.cs" />
-    <Compile Include="WPF\HandyControl\Tools\Interop\Handle\BitmapHandle.cs" />
-    <Compile Include="WPF\HandyControl\Tools\Interop\Handle\CommonHandles.cs" />
-    <Compile Include="WPF\HandyControl\Tools\Interop\Handle\HandleCollector.cs" />
-    <Compile Include="WPF\HandyControl\Tools\Interop\Handle\WpfSafeHandle.cs" />
-    <Compile Include="WPF\HandyControl\Tools\Interop\InteropMethods.cs" />
-    <Compile Include="WPF\HandyControl\Tools\Interop\InteropValues.cs" />
-    <Compile Include="WPF\MenuHelp.cs" />
-    <Compile Include="WPF\HandyControl\Controls\Attach\IconElement.cs" />
-    <Compile Include="WPF\HandyControl\Controls\Attach\ScrollViewerAttach.cs" />
-    <Compile Include="WPF\HandyControl\Controls\ScrollViewer.cs" />
-    <Compile Include="WPF\HandyControl\Controls\SimplePanel.cs" />
-    <Compile Include="WPF\HandyControl\Data\ValueBoxes.cs" />
-    <Compile Include="WPF\HandyControl\Tools\AnimationHelper.cs" />
-    <Compile Include="WPF\HandyControl\Tools\Extension\StringExtension.cs" />
-    <Compile Include="WPF\HandyControl\Tools\RegexPatterns.cs" />
-    <Compile Include="WPF\MsgBox\MessageBoxEx.xaml.cs">
-      <DependentUpon>MessageBoxEx.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="WPF\MsgBox\MessageBoxExStatic.cs" />
-    <Compile Include="WPF\MsgBox\MsgBoxExCheckBoxData.cs" />
-    <Compile Include="WPF\MsgBox\MsgBoxExDelegate.cs" />
-    <Compile Include="WPF\MsgBox\MsgBoxExtendedFunctionality.cs" />
-    <Compile Include="WPF\MsgBox\MsgBoxUrl.cs" />
-    <Compile Include="WPF\MsgBox\MsgEnumerators.cs" />
-    <Compile Include="WPF\RelayCommand.cs" />
     <Compile Include="Misc\CSharpScriptHost.cs" />
     <Compile Include="Misc\Extension.cs" />
     <None Include="..\docs\Changelog.md">
@@ -136,27 +106,10 @@
     <None Include=".editorconfig" />
     <None Include="Resources\mpvnet-santa.png" />
     <None Include="Resources\editor_conf.txt" />
+    <Content Include="libmpv-2.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\theme.txt" />
-    <Page Include="WPF\CommandPaletteControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="WPF\MsgBox\MessageBoxEx.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="WPF\SearchTextBoxUserControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="WPF\AboutWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="WPF\Resources.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Compile Include="Misc\Global.cs" />
     <Compile Include="Misc\Help.cs" />
     <Compile Include="Misc\GlobalHotkey.cs" />
@@ -166,19 +119,7 @@
     <Compile Include="Misc\Theme.cs" />
     <Compile Include="Misc\PowerShell.cs" />
     <Compile Include="Native\StockIcon.cs" />
-    <Compile Include="WPF\CommandPaletteControl.xaml.cs">
-      <DependentUpon>CommandPaletteControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="WPF\SearchTextBoxUserControl.xaml.cs">
-      <DependentUpon>SearchTextBoxUserControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Misc\Conf.cs" />
-    <Compile Include="WPF\OptionSettingControl.xaml.cs">
-      <DependentUpon>OptionSettingControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="WPF\StringSettingControl.xaml.cs">
-      <DependentUpon>StringSettingControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Misc\ExtensionMethods.cs" />
     <Compile Include="Native\MediaInfo.cs" />
     <Compile Include="Native\Taskbar.cs" />
@@ -200,19 +141,6 @@
     <Compile Include="Native\Native.cs" />
     <Compile Include="Misc\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WPF\ConfWindow.xaml.cs">
-      <DependentUpon>ConfWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="WPF\AboutWindow.xaml.cs">
-      <DependentUpon>AboutWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="WPF\LearnWindow.xaml.cs">
-      <DependentUpon>LearnWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="WPF\InputWindow.xaml.cs">
-      <DependentUpon>InputWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="WPF\WPF.cs" />
     <EmbeddedResource Include="WinForms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -247,28 +175,6 @@
     <Content Include="Resources\input.conf.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="WPF\OptionSettingControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="WPF\StringSettingControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="WPF\ConfWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="WPF\LearnWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="WPF\InputWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.8 %28x86 and x64%29</ProductName>
@@ -280,6 +186,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -93,7 +93,6 @@ namespace mpvnet
             }
             catch (Exception ex)
             {
-                Msg.ShowException(ex);
             }
         }
     }

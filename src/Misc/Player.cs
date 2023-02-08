@@ -674,7 +674,6 @@ namespace mpvnet
                             break;
                         case mpv_event_id.MPV_EVENT_START_FILE:
                             InvokeEvent(StartFile, StartFileAsync);
-                            App.RunTask(() => LoadFolder());
                             break;
                         case mpv_event_id.MPV_EVENT_AUDIO_RECONFIG:
                             InvokeEvent(AudioReconfig, AudioReconfigAsync);
@@ -1207,9 +1206,7 @@ namespace mpvnet
                     case "lnk": file = GetShortcutTarget(file); break;
                 }
 
-                if (ext == "iso")
-                    LoadISO(file);
-                else if(SubtitleTypes.Contains(ext))
+                if(SubtitleTypes.Contains(ext))
                     CommandV("sub-add", file);
                 else if (!IsMediaExtension(ext) && !file.Contains("://") && Directory.Exists(file) &&
                     File.Exists(System.IO.Path.Combine(file, "BDMV\\index.bdmv")))
@@ -1243,94 +1240,6 @@ namespace mpvnet
             return path;
         }
 
-        public void LoadISO(string path)
-        {
-            long gb = new FileInfo(path).Length / 1024 / 1024 / 1024;
-
-            if (gb < 10)
-            {
-                System.Windows.MessageBoxResult result =
-                    Msg.ShowQuestion("Click Yes for Blu-ray and No for DVD.",
-                    System.Windows.MessageBoxButton.YesNoCancel);
-
-                switch (result)
-                {
-                    case System.Windows.MessageBoxResult.Yes:
-                        Command("stop");
-                        Thread.Sleep(500);
-                        SetPropertyString("bluray-device", path);
-                        LoadFiles(new[] { @"bd://" }, false, false);
-                        break;
-                    case System.Windows.MessageBoxResult.No:
-                        Command("stop");
-                        Thread.Sleep(500);
-                        SetPropertyString("dvd-device", path);
-                        LoadFiles(new[] { @"dvd://" }, false, false);
-                        break;
-                }
-            }
-            else
-            {
-                Command("stop");
-                Thread.Sleep(500);
-                SetPropertyString("bluray-device", path);
-                LoadFiles(new[] { @"bd://" }, false, false);
-            }
-        }
-
-        public void LoadDiskFolder(string path)
-        {
-            Core.Command("stop");
-            Thread.Sleep(500);
-
-            if (Directory.Exists(path + "\\BDMV"))
-            {
-                Core.SetPropertyString("bluray-device", path);
-                Core.LoadFiles(new[] { @"bd://" }, false, false);
-            }
-            else
-            {
-                Core.SetPropertyString("dvd-device", path);
-                Core.LoadFiles(new[] { @"dvd://" }, false, false);
-            }
-        }
-
-        static object LoadFolderLockObject = new object();
-
-        public void LoadFolder()
-        {
-            if (!App.AutoLoadFolder || Control.ModifierKeys.HasFlag(Keys.Shift))
-                return;
-
-            Thread.Sleep(1000);
-
-            lock (LoadFolderLockObject)
-            {
-                string path = GetPropertyString("path");
-
-                if (!File.Exists(path) || GetPropertyInt("playlist-count") != 1)
-                    return;
-
-                string dir = Environment.CurrentDirectory;
-
-                if (path.Contains(":/") && !path.Contains("://"))
-                    path = path.Replace("/", "\\");
-
-                if (path.Contains("\\"))
-                    dir = System.IO.Path.GetDirectoryName(path);
-
-                List<string> files = GetMediaFiles(Directory.GetFiles(dir)).ToList();
-                files.Sort(new StringLogicalComparer());
-                int index = files.IndexOf(path);
-                files.Remove(path);
-
-                foreach (string i in files)
-                    CommandV("loadfile", i, "append");
-
-                if (index > 0)
-                    CommandV("playlist-move", "0", (index + 1).ToString());
-            }
-        }
 
         IEnumerable<string> GetMediaFiles(IEnumerable<string> files) => files.Where(i => IsMediaExtension(i.Ext()));
 
